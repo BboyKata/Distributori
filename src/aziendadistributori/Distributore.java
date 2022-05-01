@@ -28,4 +28,6 @@ public interface Distributore {
     
     public float getProfitto();
     
+    public float getCredito();
+    
 }

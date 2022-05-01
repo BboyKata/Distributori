@@ -6,6 +6,8 @@ package aziendadistributori;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,6 +18,7 @@ public class DistributoreCaldo implements Distributore {
     private float credito;
     private float profitto;
     List<ProdottoCaldo> prodotti;
+    private static final StringBuilder sb = new StringBuilder();
 
     public DistributoreCaldo() {
         this.prodotti = new LinkedList<ProdottoCaldo>();
@@ -46,7 +49,21 @@ public class DistributoreCaldo implements Distributore {
     }
 
     public void erogaProdotto(int posizione) {
-        System.out.println("Erogazione " + prodotti.get(posizione).getProdotto());
+        ProgDistributori.clearConsole();    
+        for (int i = 0; i <= 100; i++) {
+            sb.setLength(0);
+            for (int j = 0; j < i; j++) {
+                sb.append("#");
+            }
+            try {
+                Thread.sleep(20);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(DistributoreCaldo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.print("[" + String.format("%-100s", sb.toString()) + "] " + i + "% Erogazione in corso di " + prodotti.get(posizione).getProdotto()+"...");
+            System.out.print("\r");
+        }
+        System.out.println("Prodotto erogato!");
         credito -= prodotti.get(posizione).getPrezzo();
         profitto += prodotti.get(posizione).getPrezzo();
         if (credito > 0) {
@@ -71,6 +88,10 @@ public class DistributoreCaldo implements Distributore {
             System.out.println(60 + i + ") " + prodotti.get(i).getProdotto());
         }
     }
+     
+     public float getCredito(){
+         return credito;
+     }   
      
     public int prodottiDisponibili() {
         return prodotti.size();

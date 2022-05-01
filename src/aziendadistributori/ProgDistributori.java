@@ -60,10 +60,42 @@ public class ProgDistributori {
                             System.out.println("Distributore di prodotti freddi. Prodotti disponibili: " + d.prodottiDisponibili());
                         }
                         d.mostraProdotti();
+                        System.out.println("Inserisci indice prodotto da acquistare: ");
+                        int r = Integer.parseInt(myObj.nextLine());
+                        if (r >= 0 && r < d.prodottiDisponibili()) {
+                            while(!d.isProdottoPagato(r)){
+                                System.out.println("Inserisci moneta da:\n0) 0.10 euro;\n1) 0.20 euro;\n2) 0.50 euro;\n3) 1.0 euro;\n4) 2.0 euro;\n");
+                                int m = Integer.parseInt(myObj.nextLine());
+                                switch(m){
+                                    case 0:
+                                        d.aggiungiMoneta(0.10f);
+                                        break;
+                                    case 1:
+                                        d.aggiungiMoneta(0.2f);
+                                        break;
+                                    case 2:
+                                        d.aggiungiMoneta(0.5f);
+                                        break;
+                                    case 3:
+                                        d.aggiungiMoneta(1);
+                                        break;
+                                    case 4:
+                                        d.aggiungiMoneta(2);
+                                        break;
+                                }
+                                System.out.println("Credito: "+d.getCredito());
+                            }
+                            d.erogaProdotto(p);
+                        } else {
+                            System.out.println("Errore di inserimento.");
+                        }
 
                     } else {
                         System.out.println("Errore di inserimento.");
                     }
+                    break;
+                default:
+                    System.out.println("Errore di inserimento.");
                     break;
             }
             return c;
@@ -140,6 +172,11 @@ public class ProgDistributori {
                     d.mostraProdotti();
                     System.out.println("Inserisci indice prodotto da rimuovere/disabilitare: ");
                     int r = Integer.parseInt(myObj.nextLine());
+                    if (r >= 0 && r < d.prodottiDisponibili()) {
+                        d.rimuoviProdotto(r);
+                    } else {
+                        System.out.println("Errore di inserimento.");
+                    }
                 } else {
                     System.out.println("Errore di inserimento.");
                 }

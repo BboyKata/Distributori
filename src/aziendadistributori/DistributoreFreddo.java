@@ -31,6 +31,10 @@ public class DistributoreFreddo implements Distributore {
         }
     }
 
+    public float getCredito() {
+        return credito;
+    }
+
     public boolean isProdottoInserito(Object o) {
         try {
             return prodotti.contains((ProdottoFreddo) o);
@@ -75,8 +79,8 @@ public class DistributoreFreddo implements Distributore {
     public int prodottiDisponibili() {
         return prodotti.size();
     }
-    
-    public float getProfitto(){
+
+    public float getProfitto() {
         return profitto;
     }
 
