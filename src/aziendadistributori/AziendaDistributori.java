@@ -167,18 +167,18 @@ public class AziendaDistributori {
                     }
                 }
             } else {
-                System.out.println(ConsoleColors.ANSI_RED+"|ATTENZIONE!| Non c'è ancora alcun distributore di prodotti caldi installato!"+ConsoleColors.ANSI_RESET);
+                System.out.println(ConsoleColors.ANSI_RED + "|ATTENZIONE!| Non c'è ancora alcun distributore di prodotti caldi installato!" + ConsoleColors.ANSI_RESET);
             }
         } else {
             if (getNumeroDistributoriFreddi() > 0) {
-                System.out.println(ConsoleColors.PURPLE_BOLD+"Distributori di prodotti freddi: " + getNumeroDistributoriFreddi()+ConsoleColors.ANSI_RESET+"\n");
+                System.out.println(ConsoleColors.PURPLE_BOLD + "Distributori di prodotti freddi: " + getNumeroDistributoriFreddi() + ConsoleColors.ANSI_RESET + "\n");
                 for (int i = 0; i < getNumeroDistributori(); i++) {
                     if (distributori.get(i) instanceof DistributoreFreddo) {
-                        System.out.println(ConsoleColors.ANSI_CYAN+i + ") Prodotti disponibili: " + distributori.get(i).prodottiDisponibili() + " Profitto: " + distributori.get(i).getProfitto() + " euro"+ConsoleColors.ANSI_RESET+"\n");
+                        System.out.println(ConsoleColors.ANSI_CYAN + i + ") Prodotti disponibili: " + distributori.get(i).prodottiDisponibili() + " Profitto: " + distributori.get(i).getProfitto() + " euro" + ConsoleColors.ANSI_RESET + "\n");
                     }
                 }
             } else {
-                System.out.println(ConsoleColors.ANSI_RED+"|ATTENZIONE!| Non c'è ancora alcun distributore di prodotti freddi installato!"+ConsoleColors.ANSI_RESET);
+                System.out.println(ConsoleColors.ANSI_RED + "|ATTENZIONE!| Non c'è ancora alcun distributore di prodotti freddi installato!" + ConsoleColors.ANSI_RESET);
             }
         }
     }
