@@ -50,26 +50,39 @@ public class DistributoreCaldo implements Distributore {
 
     public void erogaProdotto(int posizione) {
         ProgDistributori.clearConsole();
-        for (int i = 0; i <= 100; i++) {
-            sb.setLength(0);
-            for (int j = 0; j < i; j++) {
-                sb.append("#");
+        CustomProgressBar pb1 = new CustomProgressBar("Erogazione prodotto", 100, 50, true, " %");
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 100; i++) {
+//                        System.out.println("qq");
+                    pb1.step();
+//                        pb1.refresh();
+                    try {
+                        Thread.sleep(60);
+                    } catch (InterruptedException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+                pb1.setExtraMessage("[PRONTO]");
+                pb1.close();
+                System.err.println("Prego, ritirare il prodotto");
+                credito -= prodotti.get(posizione).getPrezzo();
+                profitto += prodotti.get(posizione).getPrezzo();
+                if (credito > 0) {
+                    System.err.println(ConsoleColors.ANSI_GREEN + "Resto: " + credito + ConsoleColors.ANSI_RESET + "\n");
+                    credito = 0;
+                }
             }
-            try {
-                Thread.sleep(20);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(DistributoreCaldo.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            System.out.print(ConsoleColors.ANSI_ORANGE + "[" + String.format("%-100s", sb.toString()) + "] " + i + "% Erogazione in corso di " + prodotti.get(posizione).getProdotto() + "..." + ConsoleColors.ANSI_RESET);
-            System.out.print("\r");
+        });
+
+        t1.start();
+        try {
+            t1.join();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(DistributoreCaldo.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Prodotto erogato!");
-        credito -= prodotti.get(posizione).getPrezzo();
-        profitto += prodotti.get(posizione).getPrezzo();
-        if (credito > 0) {
-            System.out.println(ConsoleColors.ANSI_GREEN + "Resto: " + credito + ConsoleColors.ANSI_RESET + "\n");
-            credito = 0;
-        }
+
     }
 
     public boolean isProdottoPagato(int posizione) {
