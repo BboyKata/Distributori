@@ -60,29 +60,35 @@ public class AziendaDistributori {
                 ProdottoCaldo.stampaProdottiCaldi();
                 System.out.println("Inserisci indice prodotto da abilitare: ");
                 int c = Integer.parseInt(myObj.nextLine());
+                ProdottoCaldo pc = null;
                 if (c >= 0 && c <= 4) {
                     switch (c) {
                         case 0:
-                            distributori.get(posizione).aggiungiProdotto(ProdottoCaldo.TE);
+                            pc = ProdottoCaldo.TE;
                             break;
                         case 1:
-                            distributori.get(posizione).aggiungiProdotto(ProdottoCaldo.LATTE_MACCHIATO);
+                            pc = ProdottoCaldo.LATTE_MACCHIATO;
                             break;
                         case 2:
-                            distributori.get(posizione).aggiungiProdotto(ProdottoCaldo.CAPPUCCINO);
+                            pc = ProdottoCaldo.CAPPUCCINO;
                             break;
                         case 3:
-                            distributori.get(posizione).aggiungiProdotto(ProdottoCaldo.CIOCCOLATA);
+                            pc = ProdottoCaldo.CIOCCOLATA;
                             break;
                         case 4:
-                            distributori.get(posizione).aggiungiProdotto(ProdottoCaldo.CAFFE);
+                            pc = ProdottoCaldo.CAFFE;
                             break;
+                    }
+                    if(distributori.get(posizione).isProdottoInserito(pc)){
+                        System.out.println("Prodotto già abilitato");
+                    }else{
+                        distributori.get(posizione).aggiungiProdotto(pc);
                     }
                 } else {
                     System.out.println("Inserimento errato, rieseguire la procedura.");
                 }
             } else {
-                System.out.println("Puoi rifornire il distributore caldo con i seguenti prodotti: ");
+                System.out.println("Puoi rifornire il distributore freddo con i seguenti prodotti: ");
                 ProdottoFreddo.stampaProdottiFreddi();
                 System.out.println("Inserisci indice prodotto da inserire: ");
                 int c = Integer.parseInt(myObj.nextLine());
