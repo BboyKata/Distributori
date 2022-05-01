@@ -140,18 +140,19 @@ public class AziendaDistributori {
 
     public void stampaInfo(boolean azienda) {
         if (getNumeroDistributori() == 0) {
-            System.out.println(ConsoleColors.ANSI_ORANGE + "Non ci sono distributori installati" + ConsoleColors.ANSI_RESET);
+            System.out.println("Non ci sono distributori installati" + ConsoleColors.ANSI_RESET);
         } else {
             System.out.println(ConsoleColors.PURPLE_BOLD + "Distributori installati: " + getNumeroDistributori() + "\n Di cui:\n" + ConsoleColors.ANSI_RESET + ConsoleColors.ANSI_CYAN + "\t-Distributori prodotti freddi: " + getNumeroDistributoriFreddi() + ConsoleColors.ANSI_ORANGE + "\t-Distributori prodotti caldi: " + getNumeroDistributoriCaldi() + "\n" + ConsoleColors.ANSI_RESET);
             for (int i = 0; i < getNumeroDistributori(); i++) {
                 if (distributori.get(i) instanceof DistributoreCaldo) {
-                    System.out.println(ConsoleColors.ANSI_ORANGE + i + ") Distributore Caldo; Prodotti: " + distributori.get(i).prodottiDisponibili() + ConsoleColors.ANSI_RESET + "\n");
+                    System.out.println(ConsoleColors.ANSI_ORANGE + i + ") Distributore Caldo; Prodotti: " + distributori.get(i).prodottiDisponibili() + ConsoleColors.ANSI_RESET);
                 } else {
-                    System.out.println(ConsoleColors.ANSI_CYAN + i + ") Distributore Freddo; Prodotti: " + distributori.get(i).prodottiDisponibili() + ConsoleColors.ANSI_RESET + "\n");
+                    System.out.println(ConsoleColors.ANSI_CYAN + i + ") Distributore Freddo; Prodotti: " + distributori.get(i).prodottiDisponibili() + ConsoleColors.ANSI_RESET);
                 }
                 if (azienda) {
                     System.out.println(ConsoleColors.ANSI_GREEN + "Profitto: " + distributori.get(i).getProfitto() + " euro");
                 }
+                System.out.println("");
             }
         }
     }

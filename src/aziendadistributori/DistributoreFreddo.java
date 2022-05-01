@@ -50,10 +50,10 @@ public class DistributoreFreddo implements Distributore {
     }
 
     public void erogaProdotto(int posizione) {
-        System.out.println(ConsoleColors.ANSI_ORANGE+"Erogazione " + prodotti.get(posizione).getProdotto()+ConsoleColors.ANSI_RESET+"\n");
+        System.out.println(ConsoleColors.ANSI_ORANGE + "Erogazione " + prodotti.get(posizione).getProdotto() + ConsoleColors.ANSI_RESET + "\n");
         credito -= prodotti.get(posizione).getPrezzo();
         if (credito > 0) {
-            System.out.println(ConsoleColors.ANSI_GREEN+"Resto: " + credito+ConsoleColors.ANSI_RESET+"\n");
+            System.out.println(ConsoleColors.ANSI_GREEN + "Resto: " + credito + ConsoleColors.ANSI_RESET + "\n");
             credito = 0;
         }
         rimuoviProdotto(posizione);
@@ -72,7 +72,7 @@ public class DistributoreFreddo implements Distributore {
 
     public void mostraProdotti() {
         for (int i = 0; i < prodotti.size(); i++) {
-            System.out.println(ConsoleColors.ANSI_CYAN+60 + i + ") " + prodotti.get(i).getProdotto()+ConsoleColors.ANSI_RESET);
+            System.out.println(ConsoleColors.ANSI_CYAN + ((Integer) (i + 60)) + ") " + prodotti.get(i).getProdotto() + ConsoleColors.ANSI_RESET);
         }
     }
 

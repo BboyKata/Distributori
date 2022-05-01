@@ -85,7 +85,7 @@ public class DistributoreCaldo implements Distributore {
 
      public void mostraProdotti() {
         for (int i = 0; i < prodotti.size(); i++) {
-            System.out.println(ConsoleColors.ANSI_ORANGE+60 + i + ") " + prodotti.get(i).getProdotto()+ConsoleColors.ANSI_RESET);
+            System.out.println(ConsoleColors.ANSI_ORANGE+((Integer)(i+60)) + ") " + prodotti.get(i).getProdotto()+ConsoleColors.ANSI_RESET);
         }
     }
      
