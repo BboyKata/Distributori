@@ -14,11 +14,13 @@ import java.util.List;
 public class DistributoreCaldo implements Distributore {
 
     private float credito;
+    private float profitto;
     List<ProdottoCaldo> prodotti;
 
     public DistributoreCaldo() {
-        prodotti = new LinkedList<ProdottoCaldo>();
-        credito = 0;
+        this.prodotti = new LinkedList<ProdottoCaldo>();
+        this.profitto = 0;
+        this.credito = 0;
     }
 
     public void aggiungiProdotto(Object o) {
@@ -46,6 +48,7 @@ public class DistributoreCaldo implements Distributore {
     public void erogaProdotto(int posizione) {
         System.out.println("Erogazione " + prodotti.get(posizione).getProdotto());
         credito -= prodotti.get(posizione).getPrezzo();
+        profitto += prodotti.get(posizione).getPrezzo();
         if (credito > 0) {
             System.out.println("Resto: " + credito);
             credito = 0;
@@ -72,4 +75,8 @@ public class DistributoreCaldo implements Distributore {
     public int prodottiDisponibili() {
         return prodotti.size();
     } 
+    
+    public float getProfitto(){
+        return profitto;
+    }
 }

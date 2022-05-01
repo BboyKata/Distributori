@@ -14,11 +14,13 @@ import java.util.List;
 public class DistributoreFreddo implements Distributore {
 
     private float credito;
+    private float profitto;
     private List<ProdottoFreddo> prodotti;
 
     public DistributoreFreddo() {
-        prodotti = new LinkedList<ProdottoFreddo>();
+        this.prodotti = new LinkedList<ProdottoFreddo>();
         this.credito = 0;
+        this.profitto = 0;
     }
 
     public void aggiungiProdotto(Object o) {
@@ -50,7 +52,7 @@ public class DistributoreFreddo implements Distributore {
             System.out.println("Resto: " + credito);
             credito = 0;
         }
-        prodotti.remove(posizione);
+        rimuoviProdotto(posizione);
     }
 
     public boolean isProdottoPagato(int posizione) {
@@ -72,6 +74,10 @@ public class DistributoreFreddo implements Distributore {
 
     public int prodottiDisponibili() {
         return prodotti.size();
+    }
+    
+    public float getProfitto(){
+        return profitto;
     }
 
 }

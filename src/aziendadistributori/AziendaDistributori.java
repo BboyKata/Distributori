@@ -124,7 +124,7 @@ public class AziendaDistributori {
         }
     }
 
-    public void stampaInfo() {
+    public void stampaInfo(boolean azienda) {
         if (getNumeroDistributori() == 0) {
             System.out.println("Non ci sono distributori installati");
         } else {
@@ -133,6 +133,9 @@ public class AziendaDistributori {
                     System.out.println(i + ") Distributore Caldo; Prodotti: " + distributori.get(i).prodottiDisponibili());
                 } else {
                     System.out.println(i + ") Distributore Freddo; Prodotti: " + distributori.get(i).prodottiDisponibili());
+                }
+                if(azienda){
+                    System.out.println("Profitto: "+distributori.get(i).getProfitto());
                 }
             }
         }

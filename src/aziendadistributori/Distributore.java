@@ -26,4 +26,6 @@ public interface Distributore {
     
     public int prodottiDisponibili();
     
+    public float getProfitto();
+    
 }
