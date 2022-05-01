@@ -17,7 +17,7 @@ public class DistributoreCaldo implements Distributore {
 
     private float credito;
     private float profitto;
-    List<ProdottoCaldo> prodotti;
+    private List<ProdottoCaldo> prodotti;
     private static final StringBuilder sb = new StringBuilder();
 
     public DistributoreCaldo() {
