@@ -27,7 +27,7 @@ public enum ProdottoFreddo {
     private float prezzo;
     
     public String getProdotto(){
-        return nome+": "+prezzo+"€";
+        return nome+": "+prezzo+" euro";
     }
     
     public float getPrezzo(){

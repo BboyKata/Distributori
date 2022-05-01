@@ -27,7 +27,7 @@ public class DistributoreFreddo implements Distributore {
         try {
             prodotti.add((ProdottoFreddo) o);
         } catch (Exception e) {
-            System.out.println("|ATTENZIONE!| L'oggetto inserito non è un Prodotto Freddo");
+            System.out.println(ConsoleColors.ANSI_RED + "|ATTENZIONE!| Errore di inserimento. Il prodotto inserito non è un Prodotto Freddo" + ConsoleColors.ANSI_RESET);
         }
     }
 
@@ -39,7 +39,7 @@ public class DistributoreFreddo implements Distributore {
         try {
             return prodotti.contains((ProdottoFreddo) o);
         } catch (Exception e) {
-            System.out.println("|ATTENZIONE!| L'oggetto inserito non è un Prodotto Freddo");
+            System.out.println(ConsoleColors.ANSI_RED + "|ATTENZIONE!| Errore di inserimento. Il prodotto inserito non è un Prodotto Freddo" + ConsoleColors.ANSI_RESET);
             return false;
         }
     }
@@ -50,10 +50,10 @@ public class DistributoreFreddo implements Distributore {
     }
 
     public void erogaProdotto(int posizione) {
-        System.out.println("Erogazione " + prodotti.get(posizione).getProdotto());
+        System.out.println(ConsoleColors.ANSI_ORANGE+"Erogazione " + prodotti.get(posizione).getProdotto()+ConsoleColors.ANSI_RESET+"\n");
         credito -= prodotti.get(posizione).getPrezzo();
         if (credito > 0) {
-            System.out.println("Resto: " + credito);
+            System.out.println(ConsoleColors.ANSI_GREEN+"Resto: " + credito+ConsoleColors.ANSI_RESET+"\n");
             credito = 0;
         }
         rimuoviProdotto(posizione);
@@ -72,7 +72,7 @@ public class DistributoreFreddo implements Distributore {
 
     public void mostraProdotti() {
         for (int i = 0; i < prodotti.size(); i++) {
-            System.out.println(60 + i + ") " + prodotti.get(i).getProdotto());
+            System.out.println(ConsoleColors.ANSI_CYAN+60 + i + ") " + prodotti.get(i).getProdotto()+ConsoleColors.ANSI_RESET);
         }
     }
 

@@ -56,10 +56,10 @@ public class AziendaDistributori {
         Scanner myObj = new Scanner(System.in);
         try {
             if (distributori.get(posizione) instanceof DistributoreCaldo) {
-                System.out.println("Puoi rifornire il distributore caldo con i seguenti prodotti: ");
+                System.out.println(ConsoleColors.PURPLE_BOLD + "Puoi rifornire il distributore caldo con i seguenti prodotti: " + ConsoleColors.ANSI_RESET);
                 ProdottoCaldo.stampaProdottiCaldi();
-                System.out.println("Inserisci indice prodotto da abilitare: ");
-                int c = Integer.parseInt(myObj.nextLine());
+                System.out.println(ConsoleColors.PURPLE_BOLD + "Inserisci indice prodotto da abilitare: " + ConsoleColors.ANSI_RESET);
+                int c = ProgDistributori.inputIntero();
                 ProdottoCaldo pc = null;
                 if (c >= 0 && c <= 4) {
                     switch (c) {
@@ -79,22 +79,22 @@ public class AziendaDistributori {
                             pc = ProdottoCaldo.CAFFE;
                             break;
                     }
-                    if(distributori.get(posizione).isProdottoInserito(pc)){
-                        System.out.println("Prodotto già abilitato");
-                    }else{
+                    if (distributori.get(posizione).isProdottoInserito(pc)) {
+                        System.out.println(ConsoleColors.ANSI_ORANGE + "Prodotto già abilitato" + ConsoleColors.ANSI_RESET);
+                    } else {
                         distributori.get(posizione).aggiungiProdotto(pc);
                     }
                 } else {
-                    System.out.println("Inserimento errato, rieseguire la procedura.");
+                    System.out.println(ConsoleColors.ANSI_RED + "|ATTENZIONE!| Errore di inserimento." + ConsoleColors.ANSI_RESET);
                 }
             } else {
-                System.out.println("Puoi rifornire il distributore freddo con i seguenti prodotti: ");
+                System.out.println(ConsoleColors.PURPLE_BOLD + "Puoi rifornire il distributore freddo con i seguenti prodotti: " + ConsoleColors.ANSI_RESET);
                 ProdottoFreddo.stampaProdottiFreddi();
-                System.out.println("Inserisci indice prodotto da inserire: ");
-                int c = Integer.parseInt(myObj.nextLine());
+                System.out.println(ConsoleColors.PURPLE_BOLD + "Inserisci indice prodotto da inserire: " + ConsoleColors.ANSI_RESET);
+                int c = ProgDistributori.inputIntero();
                 if (c >= 0 && c <= 5) {
-                    System.out.println("Inserisci quantità prodotto da inserire: ");
-                    int rip = Integer.parseInt(myObj.nextLine());
+                    System.out.println(ConsoleColors.PURPLE_BOLD + "Inserisci quantità prodotto da inserire: " + ConsoleColors.ANSI_RESET);
+                    int rip = ProgDistributori.inputIntero();
                     switch (c) {
                         case 0:
                             for (int i = 0; i < rip; i++) {
@@ -128,29 +128,29 @@ public class AziendaDistributori {
                             break;
                     }
                 } else {
-                    System.out.println("Inserimento errato, rieseguire la procedura.");
+                    System.out.println(ConsoleColors.ANSI_RED + "|ATTENZIONE!| Errore di inserimento." + ConsoleColors.ANSI_RESET);
                 }
             }
 
         } catch (Exception e) {
-            System.out.println("|ERRORE!| RIPROVARE!");
+            System.out.println(ConsoleColors.ANSI_RED + "|ATTENZIONE!| Riprovare" + ConsoleColors.ANSI_RESET);
             rifornisciDistributore(posizione);
         }
     }
 
     public void stampaInfo(boolean azienda) {
         if (getNumeroDistributori() == 0) {
-            System.out.println("Non ci sono distributori installati");
+            System.out.println(ConsoleColors.ANSI_ORANGE + "Non ci sono distributori installati" + ConsoleColors.ANSI_RESET);
         } else {
-            System.out.println("Distributori installati: " + getNumeroDistributori() + "\n Di cui:\n-Distributori prodotti freddi: " + getNumeroDistributoriFreddi() + "\n-Distributori prodotti caldi: " + getNumeroDistributoriCaldi());
+            System.out.println(ConsoleColors.PURPLE_BOLD + "Distributori installati: " + getNumeroDistributori() + "\n Di cui:\n" + ConsoleColors.ANSI_RESET + ConsoleColors.ANSI_CYAN + "\t-Distributori prodotti freddi: " + getNumeroDistributoriFreddi() + ConsoleColors.ANSI_ORANGE + "\t-Distributori prodotti caldi: " + getNumeroDistributoriCaldi() + "\n" + ConsoleColors.ANSI_RESET);
             for (int i = 0; i < getNumeroDistributori(); i++) {
                 if (distributori.get(i) instanceof DistributoreCaldo) {
-                    System.out.println(i + ") Distributore Caldo; Prodotti: " + distributori.get(i).prodottiDisponibili());
+                    System.out.println(ConsoleColors.ANSI_ORANGE + i + ") Distributore Caldo; Prodotti: " + distributori.get(i).prodottiDisponibili() + ConsoleColors.ANSI_RESET + "\n");
                 } else {
-                    System.out.println(i + ") Distributore Freddo; Prodotti: " + distributori.get(i).prodottiDisponibili());
+                    System.out.println(ConsoleColors.ANSI_CYAN + i + ") Distributore Freddo; Prodotti: " + distributori.get(i).prodottiDisponibili() + ConsoleColors.ANSI_RESET + "\n");
                 }
                 if (azienda) {
-                    System.out.println("Profitto: " + distributori.get(i).getProfitto() + "€");
+                    System.out.println(ConsoleColors.ANSI_GREEN + "Profitto: " + distributori.get(i).getProfitto() + " euro");
                 }
             }
         }
@@ -159,25 +159,25 @@ public class AziendaDistributori {
     public void stampaInfoTipo(boolean caldo) {
         if (caldo) {
             if (getNumeroDistributoriCaldi() > 0) {
-                System.out.println("Distributori di prodotti caldi: " + getNumeroDistributoriCaldi());
+                System.out.println(ConsoleColors.PURPLE_BOLD + "Distributori di prodotti caldi: " + getNumeroDistributoriCaldi() + ConsoleColors.ANSI_RESET + "\n");
                 for (int i = 0; i < getNumeroDistributori(); i++) {
                     if (distributori.get(i) instanceof DistributoreCaldo) {
-                        System.out.println(i + ") Prodotti disponibili: " + distributori.get(i).prodottiDisponibili() + " Profitto: " + distributori.get(i).getProfitto() + "€");
+                        System.out.println(ConsoleColors.ANSI_ORANGE + i + ") Prodotti disponibili: " + distributori.get(i).prodottiDisponibili() + " Profitto: " + distributori.get(i).getProfitto() + " euro" + ConsoleColors.ANSI_RESET + "\n");
                     }
                 }
             } else {
-                System.out.println("Non c'è ancora alcun distributore di prodotti caldi installato;");
+                System.out.println(ConsoleColors.ANSI_RED+"|ATTENZIONE!| Non c'è ancora alcun distributore di prodotti caldi installato!"+ConsoleColors.ANSI_RESET);
             }
         } else {
             if (getNumeroDistributoriFreddi() > 0) {
-                System.out.println("Distributori di prodotti freddi: " + getNumeroDistributoriFreddi());
+                System.out.println(ConsoleColors.PURPLE_BOLD+"Distributori di prodotti freddi: " + getNumeroDistributoriFreddi()+ConsoleColors.ANSI_RESET+"\n");
                 for (int i = 0; i < getNumeroDistributori(); i++) {
                     if (distributori.get(i) instanceof DistributoreFreddo) {
-                        System.out.println(i + ") Prodotti disponibili: " + distributori.get(i).prodottiDisponibili() + " Profitto: " + distributori.get(i).getProfitto() + "€");
+                        System.out.println(ConsoleColors.ANSI_CYAN+i + ") Prodotti disponibili: " + distributori.get(i).prodottiDisponibili() + " Profitto: " + distributori.get(i).getProfitto() + " euro"+ConsoleColors.ANSI_RESET+"\n");
                     }
                 }
             } else {
-                System.out.println("Non c'è ancora alcun distributore di prodotti freddi installato;");
+                System.out.println(ConsoleColors.ANSI_RED+"|ATTENZIONE!| Non c'è ancora alcun distributore di prodotti freddi installato!"+ConsoleColors.ANSI_RESET);
             }
         }
     }
