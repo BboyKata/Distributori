@@ -30,7 +30,7 @@ public class ProgDistributori {
 
     public static int userMode() {
         if (azienda.getNumeroDistributori() == 0) {
-            System.out.println(ConsoleColors.RED_BACKGROUND + "Non ci sono distributori installati da poter utilizzare!");
+            System.out.println("Non ci sono distributori installati da poter utilizzare!");
             return 0;
         } else {
             if (firstJoin) {
@@ -50,44 +50,49 @@ public class ProgDistributori {
                     azienda.stampaInfo(false);
                     break;
                 case 2:
-                    System.out.println("Inserisci numero distributore da utilizzare(0.." + azienda.getNumeroDistributori() + "): ");
+                    int max = azienda.getNumeroDistributori() - 1;
+                    System.out.println("Inserisci numero distributore da utilizzare(0.." + max + "): ");
                     int p = Integer.parseInt(myObj.nextLine());
                     if (p >= 0 && p < azienda.getNumeroDistributori()) {
                         Distributore d = azienda.getDistributore(p);
-                        if (d instanceof DistributoreCaldo) {
-                            System.out.println("Distributore di prodotti caldi. Prodotti disponibili: " + d.prodottiDisponibili());
-                        } else {
-                            System.out.println("Distributore di prodotti freddi. Prodotti disponibili: " + d.prodottiDisponibili());
-                        }
-                        d.mostraProdotti();
-                        System.out.println("Inserisci indice prodotto da acquistare: ");
-                        int r = Integer.parseInt(myObj.nextLine());
-                        if (r >= 0 && r < d.prodottiDisponibili()) {
-                            while(!d.isProdottoPagato(r)){
-                                System.out.println("Inserisci moneta da:\n0) 0.10 euro;\n1) 0.20 euro;\n2) 0.50 euro;\n3) 1.0 euro;\n4) 2.0 euro;\n");
-                                int m = Integer.parseInt(myObj.nextLine());
-                                switch(m){
-                                    case 0:
-                                        d.aggiungiMoneta(0.10f);
-                                        break;
-                                    case 1:
-                                        d.aggiungiMoneta(0.2f);
-                                        break;
-                                    case 2:
-                                        d.aggiungiMoneta(0.5f);
-                                        break;
-                                    case 3:
-                                        d.aggiungiMoneta(1);
-                                        break;
-                                    case 4:
-                                        d.aggiungiMoneta(2);
-                                        break;
-                                }
-                                System.out.println("Credito: "+d.getCredito());
+                        if (d.prodottiDisponibili() > 0) {
+                            if (d instanceof DistributoreCaldo) {
+                                System.out.println("Distributore di prodotti caldi. Prodotti disponibili: " + d.prodottiDisponibili());
+                            } else {
+                                System.out.println("Distributore di prodotti freddi. Prodotti disponibili: " + d.prodottiDisponibili());
                             }
-                            d.erogaProdotto(p);
-                        } else {
-                            System.out.println("Errore di inserimento.");
+                            d.mostraProdotti();
+                            System.out.println("Inserisci indice prodotto da acquistare: ");
+                            int r = Integer.parseInt(myObj.nextLine());
+                            if (r >= 0 && r < d.prodottiDisponibili()) {
+                                while (!d.isProdottoPagato(r)) {
+                                    System.out.println("Inserisci moneta da:\n0) 0.10 euro;\n1) 0.20 euro;\n2) 0.50 euro;\n3) 1.0 euro;\n4) 2.0 euro;\n");
+                                    int m = Integer.parseInt(myObj.nextLine());
+                                    switch (m) {
+                                        case 0:
+                                            d.aggiungiMoneta(0.10f);
+                                            break;
+                                        case 1:
+                                            d.aggiungiMoneta(0.2f);
+                                            break;
+                                        case 2:
+                                            d.aggiungiMoneta(0.5f);
+                                            break;
+                                        case 3:
+                                            d.aggiungiMoneta(1);
+                                            break;
+                                        case 4:
+                                            d.aggiungiMoneta(2);
+                                            break;
+                                    }
+                                    System.out.println("Credito: " + d.getCredito());
+                                }
+                                d.erogaProdotto(p);
+                            } else {
+                                System.out.println("Errore di inserimento.");
+                            }
+                        }else{
+                            System.out.println("Questo distributore è vuoto!");
                         }
 
                     } else {
@@ -127,7 +132,8 @@ public class ProgDistributori {
                 System.out.println(ConsoleColors.CYAN_BOLD + "Distributore di prodotti freddi installato." + ConsoleColors.ANSI_RESET + ConsoleColors.GREEN_BACKGROUND + "\nDistributori installati: " + azienda.getNumeroDistributori() + ConsoleColors.ANSI_RESET);
                 break;
             case 3:
-                System.out.println("Inserisci numero distributore da rifornire(0.." + azienda.getNumeroDistributori() + "): ");
+                int max = azienda.getNumeroDistributori() - 1;
+                System.out.println("Inserisci numero distributore da rifornire(0.." + max + "): ");
                 int p = Integer.parseInt(myObj.nextLine());
                 if (p >= 0 && p < azienda.getNumeroDistributori()) {
                     azienda.rifornisciDistributore(p);
@@ -139,7 +145,8 @@ public class ProgDistributori {
                 azienda.stampaInfo(true);
                 break;
             case 5:
-                System.out.println("Inserisci numero distributore da visualizzare(0.." + azienda.getNumeroDistributori() + "): ");
+                max = azienda.getNumeroDistributori() - 1;
+                System.out.println("Inserisci numero distributore da visualizzare(0.." + max + "): ");
                 p = Integer.parseInt(myObj.nextLine());
                 if (p >= 0 && p < azienda.getNumeroDistributori()) {
                     Distributore d = azienda.getDistributore(p);
