@@ -94,7 +94,6 @@ public class ProgDistributori {
                         }else{
                             System.out.println("Questo distributore è vuoto!");
                         }
-
                     } else {
                         System.out.println("Errore di inserimento.");
                     }
