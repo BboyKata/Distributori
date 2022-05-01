@@ -77,6 +77,7 @@ public class ProgDistributori {
                             if (r >= 0 && r < d.prodottiDisponibili()) {
                                 while (!d.isProdottoPagato(r)) {
                                     clearConsole();
+                                    System.out.println(ConsoleColors.ANSI_GREEN + "Credito: " + d.getCredito() + ConsoleColors.ANSI_RESET);
                                     System.out.println(ConsoleColors.PURPLE_BOLD + "Inserisci moneta da:\n0) 0.10 euro;\n1) 0.20 euro;\n2) 0.50 euro;\n3) 1.0 euro;\n4) 2.0 euro;\n" + ConsoleColors.ANSI_RESET);
                                     int m = inputIntero();
                                     switch (m) {
@@ -96,7 +97,6 @@ public class ProgDistributori {
                                             d.aggiungiMoneta(2);
                                             break;
                                     }
-                                    System.out.println(ConsoleColors.ANSI_GREEN + "Credito: " + d.getCredito() + ConsoleColors.ANSI_RESET);
                                 }
                                 d.erogaProdotto(r);
                             } else {
@@ -172,7 +172,7 @@ public class ProgDistributori {
                 }
                 break;
             case 6:
-                System.out.println(ConsoleColors.PURPLE_BOLD+"Profitto: "+azienda.getProfittiTotali()+ConsoleColors.ANSI_RESET+"\n");
+                System.out.println(ConsoleColors.PURPLE_BOLD + "Profitto: " + azienda.getProfittiTotali() + ConsoleColors.ANSI_RESET + "\n");
                 break;
             case 7:
                 azienda.stampaInfoTipo(true);
@@ -183,7 +183,7 @@ public class ProgDistributori {
             case 9:
                 max = azienda.getNumeroDistributori() - 1;
                 System.out.println(ConsoleColors.PURPLE_BOLD + "Inserisci numero distributore su cui procedere (0.." + max + "): " + ConsoleColors.ANSI_RESET);
-                p = inputIntero()-60;
+                p = inputIntero() - 60;
                 if (p >= 0 && p < azienda.getNumeroDistributori()) {
                     Distributore d = azienda.getDistributore(p);
                     System.out.println(ConsoleColors.ANSI_GREEN + "Prodotti disponibili: " + ConsoleColors.ANSI_RESET);
@@ -192,7 +192,7 @@ public class ProgDistributori {
                     int r = inputIntero();
                     if (r >= 0 && r < d.prodottiDisponibili()) {
                         d.rimuoviProdotto(r);
-                        System.out.println(ConsoleColors.PURPLE_BOLD+"Prodotto rimosso"+ConsoleColors.ANSI_RESET);
+                        System.out.println(ConsoleColors.PURPLE_BOLD + "Prodotto rimosso" + ConsoleColors.ANSI_RESET);
                     } else {
                         System.out.println(ConsoleColors.ANSI_RED + "|ATTENZIONE!| Errore di inserimento." + ConsoleColors.ANSI_RESET);
                     }
