@@ -27,6 +27,26 @@ public class AziendaDistributori {
     public int getNumeroDistributori() {
         return distributori.size();
     }
+    
+    public int getNumeroDistributoriCaldi(){
+        int c = 0;
+        for (int i = 0; i < getNumeroDistributori(); i++) {
+            if(distributori.get(i) instanceof DistributoreCaldo){
+                c++;
+            }
+        }
+        return c;
+    }
+    
+    public int getNumeroDistributoriFreddi(){
+        int c = 0;
+        for (int i = 0; i < getNumeroDistributori(); i++) {
+            if(distributori.get(i) instanceof DistributoreFreddo){
+                c++;
+            }
+        }
+        return c;
+    }
 
     public void rimuoviDistributore(int posizione) {
         distributori.remove(posizione);
@@ -128,6 +148,7 @@ public class AziendaDistributori {
         if (getNumeroDistributori() == 0) {
             System.out.println("Non ci sono distributori installati");
         } else {
+            System.out.println("Distributori installati: "+getNumeroDistributori()+"\n Di cui:\n-Distributori prodotti freddi: "+getNumeroDistributoriFreddi()+"\n-Distributori prodotti caldi: "+getNumeroDistributoriCaldi());
             for (int i = 0; i < getNumeroDistributori(); i++) {
                 if (distributori.get(i) instanceof DistributoreCaldo) {
                     System.out.println(i + ") Distributore Caldo; Prodotti: " + distributori.get(i).prodottiDisponibili());
@@ -135,14 +156,48 @@ public class AziendaDistributori {
                     System.out.println(i + ") Distributore Freddo; Prodotti: " + distributori.get(i).prodottiDisponibili());
                 }
                 if(azienda){
-                    System.out.println("Profitto: "+distributori.get(i).getProfitto());
+                    System.out.println("Profitto: "+distributori.get(i).getProfitto()+"€");
                 }
+            }
+        }
+    }
+    
+    public void stampaInfoTipo(boolean caldo){
+        if(caldo){
+            if(getNumeroDistributoriCaldi()>0){
+                System.out.println("Distributori di prodotti caldi: "+getNumeroDistributoriCaldi());
+                for (int i = 0; i < getNumeroDistributori(); i++) {
+                    if(distributori.get(i) instanceof DistributoreCaldo){
+                        System.out.println(i+") Prodotti disponibili: "+distributori.get(i).prodottiDisponibili()+" Profitto: "+distributori.get(i).getProfitto()+"€");
+                    }
+                }
+            }else{
+                System.out.println("Non c'è ancora alcun distributore di prodotti caldi installato;");
+            }
+        }else{
+            if(getNumeroDistributoriFreddi()>0){
+                System.out.println("Distributori di prodotti freddi: "+getNumeroDistributoriFreddi());
+                for (int i = 0; i < getNumeroDistributori(); i++) {
+                    if(distributori.get(i) instanceof DistributoreFreddo){
+                        System.out.println(i+") Prodotti disponibili: "+distributori.get(i).prodottiDisponibili()+" Profitto: "+distributori.get(i).getProfitto()+"€");
+                    }
+                }
+            }else{
+                System.out.println("Non c'è ancora alcun distributore di prodotti freddi installato;");
             }
         }
     }
     
     public Distributore getDistributore(int posizione){
         return distributori.get(posizione);
+    }
+    
+    public float getProfittiTotali(){
+        float somma = 0;
+        for (int i = 0; i < getNumeroDistributori(); i++) {
+            somma += distributori.get(i).getProfitto();
+        }
+        return somma;
     }
 
 }
