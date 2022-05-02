@@ -183,13 +183,13 @@ public class ProgDistributori {
             case 9:
                 max = azienda.getNumeroDistributori() - 1;
                 System.out.println(ConsoleColors.PURPLE_BOLD + "Inserisci numero distributore su cui procedere (0.." + max + "): " + ConsoleColors.ANSI_RESET);
-                p = inputIntero() - 60;
+                p = inputIntero();
                 if (p >= 0 && p < azienda.getNumeroDistributori()) {
                     Distributore d = azienda.getDistributore(p);
                     System.out.println(ConsoleColors.ANSI_GREEN + "Prodotti disponibili: " + ConsoleColors.ANSI_RESET);
                     d.mostraProdotti();
                     System.out.println(ConsoleColors.PURPLE_BOLD + "Inserisci indice prodotto da rimuovere/disabilitare: " + ConsoleColors.ANSI_RESET);
-                    int r = inputIntero();
+                    int r = inputIntero() - 60; 
                     if (r >= 0 && r < d.prodottiDisponibili()) {
                         d.rimuoviProdotto(r);
                         System.out.println(ConsoleColors.PURPLE_BOLD + "Prodotto rimosso" + ConsoleColors.ANSI_RESET);

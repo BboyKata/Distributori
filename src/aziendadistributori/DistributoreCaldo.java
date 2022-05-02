@@ -60,7 +60,7 @@ public class DistributoreCaldo implements Distributore {
             } catch (InterruptedException ex) {
                 Logger.getLogger(DistributoreCaldo.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.print(ConsoleColors.ANSI_ORANGE + "[" + String.format("%-100s", sb.toString()) + "] " + i + "% Erogazione in corso di " + prodotti.get(posizione).getProdotto() + "..." + ConsoleColors.ANSI_RESET);
+            System.out.print(ConsoleColors.ANSI_ORANGE + "[" + String.format("%-100s", sb.toString()) + "] " + i + "% Erogando " + prodotti.get(posizione).getProdotto() + "..." + ConsoleColors.ANSI_RESET);
             System.out.print("\r");
         }
         System.out.println("Prodotto erogato!");
