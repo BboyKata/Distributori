@@ -38,6 +38,17 @@ public class ProgDistributori {
         }
     }
 
+    public void caricamento() {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < i; j++) {
+                System.out.print("#");
+            }
+            System.out.println("");
+            clearConsole();
+
+        }
+    }
+
     public static int userMode() {
         if (azienda.getNumeroDistributori() == 0) {
             System.out.println(ConsoleColors.ANSI_RED + "|ATTENZIONE!| Non ci sono distributori installati da poter utilizzare!." + ConsoleColors.ANSI_RESET);
@@ -189,7 +200,7 @@ public class ProgDistributori {
                     System.out.println(ConsoleColors.ANSI_GREEN + "Prodotti disponibili: " + ConsoleColors.ANSI_RESET);
                     d.mostraProdotti();
                     System.out.println(ConsoleColors.PURPLE_BOLD + "Inserisci indice prodotto da rimuovere/disabilitare: " + ConsoleColors.ANSI_RESET);
-                    int r = inputIntero() - 60; 
+                    int r = inputIntero() - 60;
                     if (r >= 0 && r < d.prodottiDisponibili()) {
                         d.rimuoviProdotto(r);
                         System.out.println(ConsoleColors.PURPLE_BOLD + "Prodotto rimosso" + ConsoleColors.ANSI_RESET);

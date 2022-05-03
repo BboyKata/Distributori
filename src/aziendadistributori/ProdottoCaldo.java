@@ -35,7 +35,7 @@ public enum ProdottoCaldo {
     }
 
     /**
-     * 
+     *
      * @return prezzo del prodotto.
      */
     public float getPrezzo() {
@@ -43,7 +43,8 @@ public enum ProdottoCaldo {
     }
 
     /**
-     * Stampa con indice tutti i prodotti caldi da poter inserire nel distributore di prodotti caldi.
+     * Stampa con indice tutti i prodotti caldi da poter inserire nel
+     * distributore di prodotti caldi.
      */
     public static void stampaProdottiCaldi() {
         int i = 0;
